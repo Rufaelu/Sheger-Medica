@@ -10,6 +10,7 @@ use function Laravel\Prompts\select;
 class practitionerController extends Controller
 {
     function practitioner(){
-        $data=DB::select("select * from practitioner");    }
+//        $data=DB::select("select * from practitioner");
+    }
     //
 }
