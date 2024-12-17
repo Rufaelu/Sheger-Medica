@@ -151,7 +151,7 @@
 <header>
     <div class="container">
         <div id="branding">
-            <h1><span class="highlight">Admin</span> Dashboard</h1>
+            <h1><span class="highlight">Sheger</span> Medica</h1>
         </div>
         <nav>
             <ul>
