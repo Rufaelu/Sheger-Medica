@@ -5,23 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practitioner Application Review</title>
     <style>
+
         body {
             font-family: Arial, sans-serif;
+            /*background-color: white;*/
             line-height: 1.6;
             color: #333;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            --input-focus: #2d8cf0;
+            --font-color: #323232;
+            --font-color-sub: #666;
+            --bg-color: #fff;
+            --bg-color-alt: #666;
+            --main-color: #323232;
+            background-color: var(--bg-color);
+            /*margin-left: 38vw;*/
+            /*width:10vw;*/
         }
         h1 {
             text-align: center;
             color: #2c3e50;
         }
         .application {
-            background-color: #f9f9f9;
+            /*background-color: rgba(187, 187, 187, 0.6);*/
+            background-color: lightgray;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(56, 50, 50, 0.1);
         }
         .field {
             margin-bottom: 15px;
@@ -31,10 +43,15 @@
             margin-bottom: 5px;
         }
         .field-value {
-            background-color: #fff;
+            /*background-color: #fff;*/
             padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            outline: none;
+            color: var(--font-color);
+
+            /*border: 1px solid #ddd;*/
+            border: 5px solid var(--main-color);
+            background-color: var(--bg-color);
+            box-shadow: 4px 4px var(--main-color);
         }
         .image-gallery {
             display: flex;
@@ -55,11 +72,18 @@
         button {
             padding: 10px 20px;
             margin: 0 10px;
-            border: none;
-            border-radius: 4px;
+            border: 2px solid var(--main-color);
+            background-color: var(--bg-color);
+            box-shadow: 4px 4px var(--main-color);            border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.3s;
+            color: var(--font-color);
+
+        }
+        button:active{
+            box-shadow:   0px var(--main-color);
+            transform: translate(3px, 3px);
         }
         #approveBtn {
             background-color: #2ecc71;

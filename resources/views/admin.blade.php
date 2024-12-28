@@ -189,6 +189,7 @@
                     { id: 1, name: "John Doe", email: "john@example.com", specialties: "Herbal Medicine, Acupuncture", region: "Addis Ababa" },
                     { id: 2, name: "Jane Smith", email: "jane@example.com", specialties: "Traditional Healing, Aromatherapy", region: "Gondar" },
                     { id: 3, name: "Abebe Kebede", email: "abebe@example.com", specialties: "Medicinal Plants, Holistic Healing", region: "Bahir Dar" }
+
                 ]);
             }, 1000);
         });
@@ -237,16 +238,18 @@
 
     function renderApplications(applications) {
         let tableRows = applications.map(app => `
+<!--                <form action="/proceedApplications/1" method="get">-->
                 <tr>
+                    <td>${app.id}</td>
                     <td>${app.name}</td>
                     <td>${app.email}</td>
                     <td>${app.specialties}</td>
                     <td>${app.region}</td>
                     <td>
-                        <button class="btn btn-success" onclick="handleApplication(${app.id}, 'approve')">Approve</button>
-                        <button class="btn btn-danger" onclick="handleApplication(${app.id}, 'reject')">Reject</button>
+                      <a href="/proceedApplications/${app.id}">  <button type="submit" class="btn btn-success" value="Process"  >Proceed</button></a>
                     </td>
                 </tr>
+<!--                </form>-->
             `).join('');
 
         const content = `
@@ -254,6 +257,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Specialties</th>
