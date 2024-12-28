@@ -167,7 +167,7 @@
         font-weight: 600;
         color: var(--font-color);
         padding: 5px 10px;
-        outline: none;
+            outline: none;
     }
 
     .flip-card__input::placeholder {
@@ -202,8 +202,10 @@
         margin-left:120px;
     }
 
+
 </style>
 
+<x-navbar />
 
 
 <div class="formm" >
@@ -225,8 +227,8 @@
                     <div class="flip-card__back">
                         <div class="title">Sign up</div>
                         <form class="flip-card__form" action="">
-                            <input class="flip-card__input" placeholder="Name" type="name">
-                            <input class="flip-card__input" placeholder="Date of birth" type="dob">
+                            <input class="flip-card__input" placeholder="Name" type="text">
+                            <input class="flip-card__input" placeholder="Date of birth" type="date">
                             <input class="flip-card__input" name="email" placeholder="Email" type="email">
                             <input class="flip-card__input" name="password" placeholder="Password" type="password">
                             <input class="flip-card__input" name="password-confirm" placeholder="Confirm Password" type="password">
