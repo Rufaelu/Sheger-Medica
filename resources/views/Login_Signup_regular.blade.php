@@ -6,7 +6,6 @@
         --bg-color: #fff;
         --bg-color-alt: #666;
         --main-color: #323232;
-        background-color: #1a202c;
         margin-left: 38vw;
         width:10vw;
 
@@ -218,7 +217,7 @@
                 <div class="flip-card__inner">
                     <div class="flip-card__front">
                         <div class="title">Log in</div>
-                        <form class="flip-card__form" action="">
+                        <form class="flip-card__form" action="login" method="post">
                             <input class="flip-card__input" name="email" placeholder="Email" type="email">
                             <input class="flip-card__input" name="password" placeholder="Password" type="password">
                             <button class="flip-card__btn">Let`s go!</button>
