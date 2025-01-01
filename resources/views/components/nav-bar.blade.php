@@ -31,11 +31,14 @@
     }
     .navbar a:hover {
         color: #555;
+           transform: scale3d(1.1,1.2,1.2);
     }
     .navbar .logo {
         color: blue;
         font-weight: bold;
         font-size: 1.5em;
+                transition: ease-in-out .6s;
+
     }
 </style>
 <header>
