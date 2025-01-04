@@ -8,16 +8,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: rgba(192, 192, 192, 0.17);
+        background-color: rgba(70, 70, 70, 0);
         padding: 10px 50px;
         border-bottom: 1px solid blue;
         border-radius: 12px;
     }
     header{
-        top:1vh;
+        top:0;
         position: fixed;
-        width: 70vw;
-        margin-left: 11vw;
+        width: 100vw;
+        margin-left: 0;
+        z-index: 1000000;
+        background-color: transparent;
     }
     .left-nav, .right-nav {
 
@@ -25,16 +27,19 @@
     }
     .navbar a {
         text-decoration: none;
-        color: black;
+        /* color: transparent; */
         font-weight: bold;
         margin: 0 15px;
+        background-clip: text; /* Clips the text to the background */
+    -webkit-text-fill-color: transparent; /* Ensures the text is transparent */
+    background-image: inherit;
     }
     .navbar a:hover {
         color: #555;
            transform: scale3d(1.1,1.2,1.2);
     }
     .navbar .logo {
-        color: blue;
+        color: White;
         font-weight: bold;
         font-size: 1.5em;
                 transition: ease-in-out .6s;
@@ -51,8 +56,8 @@
         <a href="#" class="logo">Sheger Medica</a>
         <div class="right-nav">
             <a href="#">Profile</a>
-            <a href="#">Contact Us</a>
-            <a href="#">About Us</a>
+            <a href="{{route('contact us')}}">Contact Us</a>
+            <a href="{{route('about us')}}">About Us</a>
         </div>
     </div>
 </header>

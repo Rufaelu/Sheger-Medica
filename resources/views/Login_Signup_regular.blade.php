@@ -8,6 +8,8 @@
         --main-color: #323232;
         margin-left: 38vw;
         width:10vw;
+        margin-top: 35vh;
+        margin-left: 45vw;
 
     }
     /* switch card */
@@ -196,18 +198,13 @@
         color: var(--font-color);
         cursor: pointer;
     }
-    .formm{
-        margin-top: 45vh;
-        margin-left:120px;
-    }
+   
 
 
 </style>
 
-<x-navbar />
+<x-navbar/>
 
-
-<div class="formm" >
     <div class="wrapper">
         <div class="card-switch">
             <label class="switch">
@@ -217,7 +214,8 @@
                 <div class="flip-card__inner">
                     <div class="flip-card__front">
                         <div class="title">Log in</div>
-                        <form class="flip-card__form" action="login" method="post">
+                        <form class="flip-card__form" action="{{ route('log') }}" method="post">
+                            @csrf
                             <input class="flip-card__input" name="email" placeholder="Email" type="email">
                             <input class="flip-card__input" name="password" placeholder="Password" type="password">
                             <button class="flip-card__btn">Let`s go!</button>
@@ -226,6 +224,7 @@
                     <div class="flip-card__back">
                         <div class="title">Sign up</div>
                         <form class="flip-card__form" action="">
+                            @csrf
                             <input class="flip-card__input" placeholder="Name" type="text">
                             <input class="flip-card__input" placeholder="Date of birth" type="date">
                             <input class="flip-card__input" name="email" placeholder="Email" type="email">
@@ -233,9 +232,9 @@
                             <input class="flip-card__input" name="password-confirm" placeholder="Confirm Password" type="password">
                             <button class="flip-card__btn">Confirm!</button>
                         </form>
+
                     </div>
                 </div>
             </label>
         </div>
     </div>
-</div>
