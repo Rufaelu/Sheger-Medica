@@ -165,6 +165,7 @@
 <div class="container" id="mainContent">
     <!-- Content will be dynamically loaded here -->
 </div>
+      
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
