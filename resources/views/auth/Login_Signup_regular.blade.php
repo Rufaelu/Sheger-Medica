@@ -7,11 +7,12 @@
         --bg-color-alt: #666;
         --main-color: #323232;
         margin-left: 38vw;
-        width:10vw;
+        width: 10vw;
         margin-top: 35vh;
         margin-left: 45vw;
 
     }
+
     /* switch card */
     .switch {
         transform: translateY(-200px);
@@ -83,19 +84,19 @@
         transition: 0.3s;
     }
 
-    .toggle:checked + .slider {
+    .toggle:checked+.slider {
         background-color: var(--input-focus);
     }
 
-    .toggle:checked + .slider:before {
+    .toggle:checked+.slider:before {
         transform: translateX(30px);
     }
 
-    .toggle:checked ~ .card-side:before {
+    .toggle:checked~.card-side:before {
         text-decoration: none;
     }
 
-    .toggle:checked ~ .card-side:after {
+    .toggle:checked~.card-side:after {
         text-decoration: underline;
     }
 
@@ -114,15 +115,16 @@
         transform-style: preserve-3d;
     }
 
-    .toggle:checked ~ .flip-card__inner {
+    .toggle:checked~.flip-card__inner {
         transform: rotateY(180deg);
     }
 
-    .toggle:checked ~ .flip-card__front {
+    .toggle:checked~.flip-card__front {
         box-shadow: none;
     }
 
-    .flip-card__front, .flip-card__back {
+    .flip-card__front,
+    .flip-card__back {
         padding: 20px;
         position: absolute;
         display: flex;
@@ -168,7 +170,7 @@
         font-weight: 600;
         color: var(--font-color);
         padding: 5px 10px;
-            outline: none;
+        outline: none;
     }
 
     .flip-card__input::placeholder {
@@ -180,7 +182,8 @@
         border: 2px solid var(--input-focus);
     }
 
-    .flip-card__btn:active, .button-confirm:active {
+    .flip-card__btn:active,
+    .button-confirm:active {
         box-shadow: 0px 0px var(--main-color);
         transform: translate(3px, 3px);
     }
@@ -198,43 +201,48 @@
         color: var(--font-color);
         cursor: pointer;
     }
-   
-
-
 </style>
 
-<x-navbar/>
-
-    <div class="wrapper">
-        <div class="card-switch">
-            <label class="switch">
-                <input type="checkbox" class="toggle">
-                <span class="slider"></span>
-                <span class="card-side"></span>
-                <div class="flip-card__inner">
-                    <div class="flip-card__front">
-                        <div class="title">Log in</div>
-                        <form class="flip-card__form" action="{{ route('log') }}" method="post">
-                            @csrf
-                            <input class="flip-card__input" name="email" placeholder="Email" type="email">
-                            <input class="flip-card__input" name="password" placeholder="Password" type="password">
-                            <button class="flip-card__btn">Let`s go!</button>
-                        </form>
-                    </div>
-                    <div class="flip-card__back">
-                        <div class="title">Sign up</div>
-                        <form class="flip-card__form" action="">
-                            @csrf
-                            <input class="flip-card__input" placeholder="Name" type="text">
-                            <input class="flip-card__input" placeholder="Date of birth" type="date">
-                            <input class="flip-card__input" name="email" placeholder="Email" type="email">
-                            <input class="flip-card__input" name="password" placeholder="Password" type="password">
-                            <input class="flip-card__input" name="password-confirm" placeholder="Confirm Password" type="password">
-                            <button class="flip-card__btn">Confirm!</button>
-                        </form>
-
-                    </div>
+<div class="wrapper">
+    <div class="card-switch">
+        <label class="switch">
+            <input type="checkbox" class="toggle">
+            <span class="slider"></span>
+            <span class="card-side"></span>
+            <div class="flip-card__inner">
+                <!-- Login Card -->
+                <div class="flip-card__front">
+                    <div class="title">Log in</div>
+                    <form class="flip-card__form" action="{{ route('login') }}" method="post">
+                        @csrf
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email" required autofocus>
+                        <input class="flip-card__input" name="password" placeholder="Password" type="password" required>
+                        <div class="remember-me">
+                            <label>
+                                <input type="checkbox" name="remember">
+                                Remember me
+                            </label>
+                        </div>
+                        <button class="flip-card__btn">Let’s go!</button>
+                        @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
+                        @endif
+                    </form>
                 </div>
-            </label>
-        </div>
+                <!-- Registration Card -->
+                <div class="flip-card__back">
+                    <div class="title">Sign up</div>
+                    <form class="flip-card__form" action="{{ route('register') }}" method="post">
+                        @csrf
+                        <input class="flip-card__input" name="name" placeholder="Name" type="text" required autofocus>
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email" required>
+                        <input class="flip-card__input" name="password" placeholder="Password" type="password" required>
+                        <input class="flip-card__input" name="password_confirmation" placeholder="Confirm Password" type="password" required>
+                        <button class="flip-card__btn">Register</button>
+                        <a href="{{ route('login') }}" class="already-registered">Already registered?</a>
+                    </form>
+                </div>
+            </div>
+        </label>
     </div>
+</div>
