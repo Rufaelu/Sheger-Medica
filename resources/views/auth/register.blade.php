@@ -21,9 +21,9 @@
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+                type="password"
+                name="password"
+                required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -33,11 +33,56 @@
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                type="password"
+                name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        <!-- Date of Birth-->
+        <div class="mt-4">
+            <x-input-label for="dob" :value="__('Date Of Birth')" />
+
+            <x-text-input id="dob" class="block mt-1 w-full"
+                type="date"
+                name="dob" required />
+
+        </div>
+
+        <!-- Gender-->
+        <div class="mt-4">
+            <x-input-label for="dob" :value="__('Gender')" />
+
+            <select id="gender" name="gender" required class="block mt-1 w-full" style="background-color: #111827; color:aliceblue;border-radius:7.6px; border: solid rgb(55, 58, 65) 1px">
+                <option value="" disabled selected>Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+        </div>
+        <!-- Certificate-->
+
+        <div class="mt-4">
+            <x-input-label for="certificate" :value="__('Certificate (for verification)')" />
+
+            <input id="certificate" name="certificate" type="file"
+                required
+                class="block mt-1 w-full"
+                style="background-color: #111827; color: aliceblue; border-radius: 7.6px; border: solid rgb(55, 58, 65) 1px">
+        </div>
+
+        <!-- Id -->
+
+        <div class="mt-4">
+            <x-input-label for="id_image" :value="__('ID Image (for verification)')" />
+
+            <input id="id_image" name="id_image" type="file"
+                required
+                class="block mt-1 w-full"
+                style="background-color: #111827; color: aliceblue; border-radius: 7.6px; border: solid rgb(55, 58, 65) 1px">
+        </div>
+
+
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
