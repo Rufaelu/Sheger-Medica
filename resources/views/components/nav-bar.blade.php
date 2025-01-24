@@ -1,63 +1,85 @@
-
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-    .navbar {
+<style>/* Header styles */
+    .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: rgba(70, 70, 70, 0);
-        padding: 10px 50px;
-        border-bottom: 1px solid blue;
-        border-radius: 12px;
+        background-color: #333;
+        padding: 1rem 2rem;
+        color: white;
+        position: relative;
     }
-    header{
-        top:0;
-        position: fixed;
-        width: 100vw;
-        margin-left: 0;
-        z-index: 1000000;
-        background-color: transparent;
-    }
-    .left-nav, .right-nav {
 
-        margin-top: 3vh;
+    .header .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
     }
-    .navbar a {
+
+    .nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
         text-decoration: none;
-        /* color: transparent; */
-        font-weight: bold;
-        margin: 0 15px;
-        background-clip: text; /* Clips the text to the background */
-    -webkit-text-fill-color: transparent; /* Ensures the text is transparent */
-    background-image: inherit;
+        color: white;
+        font-size: 1rem;
+        transition: color 0.3s;
     }
-    .navbar a:hover {
-        color: #555;
-           transform: scale3d(1.1,1.2,1.2);
-    }
-    .navbar .logo {
-        color: White;
-        font-weight: bold;
-        font-size: 1.5em;
-                transition: ease-in-out .6s;
 
+    .nav-links a:hover {
+        color: #f7327a;
+    }
+
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            background-color: #333;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .nav-links.nav-visible {
+            display: flex;
+        }
+
+        .nav-toggle {
+            display: block;
+        }
     }
 </style>
-<header>
-    <div class="navbar">
-        <div class="left-nav">
-            <a href="#">Herbs</a>
-            <a href="#">Remedy</a>
-            <a href="#">Practitioners</a>
-        </div>
-        <a href="#" class="logo">Sheger Medica</a>
-        <div class="right-nav">
-            <a href="#">Profile</a>
-            <a href="{{route('contact us')}}">Contact Us</a>
-            <a href="{{route('about us')}}">About Us</a>
-        </div>
-    </div>
+<header class="header">
+    <div class="logo">Sheger Medica</div>
+    <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="#">Herbs</a></li>
+            <li><a href="#">Remedy</a></li>
+            <li><a href="#">Practitioners</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
 </header>

@@ -1,8 +1,44 @@
-<x-guest-layout>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+    body{
+        background-color: #f3f4f6;
+    }
+    #title{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 4vh;
+        background-color: transparent;
+    }
+
+    .form{
+        position: relative;
+    }
+    #head{
+        display:flex;
+        flex-direction: column;
+        position: relative;
+
+        align-items: center;
+
+
+        /*background-color: red;*/
+
+        .cont{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>
+
+<x-guest-layout class="cont">
+    <div id="head">
+
+        <x-logo  />
+
+    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="form">
         @csrf
 
         <!-- Email Address -->
