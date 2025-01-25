@@ -35,8 +35,5 @@ class Bookmarks extends Model
         return $this->belongsTo(Remedy::class, 'remedy_id', 'remedy_id');
     }
 
-    public function practitioner()
-    {
-        return $this->belongsTo(Practitioner::class, 'practitioner_id', 'practitioner_id');
-    }
+
 }

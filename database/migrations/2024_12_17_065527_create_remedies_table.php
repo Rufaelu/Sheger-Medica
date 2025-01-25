@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('dosage', 100)->nullable();
             $table->string('ailment', 100);
             $table->unsignedBigInteger('posted_by');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
 
             $table->foreign('herb_id')->references('herb_id')->on('herbs');

@@ -104,72 +104,43 @@
 <body>
 <h1>Practitioner Application Review</h1>
 <div id="applicationContainer" class="application">
-    <!-- Application data will be inserted here -->
-</div>
+    <div class="field">
+        <div class="field-label">User ID:</div>
+        <div class="field-value">{{$user->user_id}}</div>
+    </div>
+    <div class="field">
+        <div class="field-label">Name:</div>
+        <div class="field-value">{{$user->first_name .' '. $user->last_name}}</div>
+    </div>
+    <div class="field">
+        <div class="field-label">Email:</div>
+        <div class="field-value">{{$user->email}}</div>
+    </div>
+    <div class="field">
+        <div class="field-label">Specialty:</div>
+        <div class="field-value">{{$user->speciality}}</div>
+    </div>
+    <div class="field">
+{{--        <div style="width: 100%; height: 600px; border: 1px solid #ccc; overflow: auto;">--}}
+{{--            <iframe--}}
+{{--                src="{{ asset('path/to/your/file.pdf') }}"--}}
+{{--                style="width: 100%; height: 100%;"--}}
+{{--                frameborder="0">--}}
+{{--                This browser does not support PDFs. Please download the PDF to view it:--}}
+{{--                <a href="{{ asset('path/to/your/file.pdf') }}">Download PDF</a>--}}
+{{--            </iframe>--}}
+{{--        </div>--}}
+    </div>
+    <div class="button-group">
+        <button id="approveBtn">Approve</button>
+        <button id="rejectBtn">Reject</button>
+    </div></div>
 
 <script>
     // Simulated data retrieval from database
-    const applicationData = {
-        id: "APP12345",
-        name: "Dr. Jane Smith",
-        email: "jane.smith@example.com",
-        specialty: "Pediatrics",
-        experience: "10 years of experience in pediatric care, specializing in neonatal health. Completed residency at City Hospital and fellowship at Children's Medical Center.",
-        images: [
-            "https://example.com/image1.jpg",
-            "https://example.com/image2.jpg",
-            "https://example.com/image3.jpg"
-        ]
-    };
 
-    function displayApplication(data) {
-        const container = document.getElementById('applicationContainer');
-        container.innerHTML = `
-                <div class="field">
-                    <div class="field-label">Application ID:</div>
-                    <div class="field-value">${data.id}</div>
-                </div>
-                <div class="field">
-                    <div class="field-label">Name:</div>
-                    <div class="field-value">${data.name}</div>
-                </div>
-                <div class="field">
-                    <div class="field-label">Email:</div>
-                    <div class="field-value">${data.email}</div>
-                </div>
-                <div class="field">
-                    <div class="field-label">Specialty:</div>
-                    <div class="field-value">${data.specialty}</div>
-                </div>
-                <div class="field">
-                    <div class="field-label">Experience:</div>
-                    <div class="field-value">${data.experience}</div>
-                </div>
-                <div class="field">
-                    <div class="field-label">Uploaded Images:</div>
-                    <div class="image-gallery">
-                        ${data.images.map(img => `<img src="${img}" alt="Practitioner image">`).join('')}
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button id="approveBtn">Approve</button>
-                    <button id="rejectBtn">Reject</button>
-                </div>
-            `;
 
-        document.getElementById('approveBtn').addEventListener('click', () => handleDecision('approve'));
-        document.getElementById('rejectBtn').addEventListener('click', () => handleDecision('reject'));
-    }
 
-    function handleDecision(action) {
-        // Here you would typically send the decision to your backend
-        console.log(`Application ${applicationData.id} ${action}d`);
-        alert(`Application ${action === 'approve' ? 'Approved' : 'Rejected'}`);
-        // After processing, you might want to load the next application or redirect
-    }
-
-    // Load the application data when the page loads
-    window.addEventListener('load', () => displayApplication(applicationData));
 </script>
 </body>
 </html>
