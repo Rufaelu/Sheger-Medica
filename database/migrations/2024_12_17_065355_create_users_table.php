@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('average_rating', 3, 2)->default(0.00)->nullable();
             $table->enum('approval_status', ['pending', 'approved', 'rejected'])->default('pending')->nullable();
             $table->string('profile_picture', 255)->nullable();
+            $table->string('certificate', 255)->nullable();
             $table->timestamps();
         });
     }

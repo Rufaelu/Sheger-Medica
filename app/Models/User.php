@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
 
-class User extends Model
+class User extends Model  implements AuthenticatableContract
 {
+    use \Illuminate\Auth\Authenticatable;
+
     use HasFactory,HasRoles;
 
     protected $table = 'users';
@@ -21,7 +25,6 @@ class User extends Model
         'last_name',
         'email',
         'password',
-        'google_id',
         'phone',
         'bio',
         'specialties',
@@ -31,6 +34,14 @@ class User extends Model
     ];
 
     public $timestamps = false;
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     // Relationships
     public function herbs()

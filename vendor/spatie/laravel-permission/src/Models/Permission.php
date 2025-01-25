@@ -28,6 +28,7 @@ class Permission extends Model implements PermissionContract
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? config('auth.defaults.guard');
 
+
         parent::__construct($attributes);
 
         $this->guarded[] = $this->primaryKey;
@@ -153,4 +154,5 @@ class Permission extends Model implements PermissionContract
         /** @var PermissionContract|null */
         return static::getPermissions($params, true)->first();
     }
+
 }

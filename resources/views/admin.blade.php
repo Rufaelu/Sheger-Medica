@@ -165,7 +165,7 @@
 <div class="container" id="mainContent">
     <!-- Content will be dynamically loaded here -->
 </div>
-      
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -239,7 +239,7 @@
 
     function renderApplications(applications) {
         let tableRows = applications.map(app => `
-<!--                <form action="/proceedApplications/1" method="get">-->
+<!--                <form action="" method="get">-->
                 <tr>
                     <td>${app.id}</td>
                     <td>${app.name}</td>
@@ -247,10 +247,10 @@
                     <td>${app.specialties}</td>
                     <td>${app.region}</td>
                     <td>
-                      <a href="/proceedApplications/${app.id}">  <button type="submit" class="btn btn-success" value="Process"  >Proceed</button></a>
+                      <a href="{{ route('verify', ['id' => 6]) }}"> <button type="submit" class="btn btn-success" value="Process"  >Proceed</button></a>
                     </td>
                 </tr>
-<!--                </form>-->
+<!--         </form>-->
             `).join('');
 
         const content = `

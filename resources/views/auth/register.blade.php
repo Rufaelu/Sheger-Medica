@@ -1,4 +1,5 @@
-<style xmlns="http://www.w3.org/1999/html">.head{
+<style xmlns="http://www.w3.org/1999/html">
+    .head{
         display: flex;
         flex-direction: column;
     }
@@ -120,7 +121,7 @@ label{
     <h1 id="title">Welcome To Sheger Medica</h1>
 
 </div>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{route('adduser')}}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -159,12 +160,14 @@ label{
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-
+{{-- DOB--}}
         <div class="form-section">
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob" style="border-radius: 6px; border-color: #c9c8c8" required>
-        </div>
+            <x-input-error :messages="$errors->get('dob')" class="mt-2" />
 
+        </div>
+{{--Gender--}}
         <div class="form-section">
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" style="border-radius: 6px; border-color: #c9c8c8" required>
@@ -173,38 +176,21 @@ label{
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+
         </div>
         <div class="check" style=" border-radius: 6px">
             <fieldset style="display: flex; flex-direction: row; gap:1vw; ">
             <h6>I'm a practitioner</h6>
         <label class="switch">
-            <input type="checkbox" name="checkbox" id="checkbox">
+            <input type="checkbox" name="checkbox" id="checkbox" >
             <span class="slider"></span>
         </label>
             </fieldset>
             <div style="display: none; flex-direction: column; gap: 2vh" id="practfiled" >
-
-                <div class="form-section">
-                    <label for="region">Region:</label>
-                    <select id="region" name="region" style="border-radius: 6px; border-color: #c9c8c8" required>
-                        <option value="" disabled selected>Select your region</option>
-                        <option value="addis_ababa">Addis Ababa</option>
-                        <option value="amhara">Amhara</option>
-                        <option value="oromia">Oromia</option>
-                        <option value="tigray">Tigray</option>
-                        <option value="somali">Somali</option>
-                        <option value="afar">Afar</option>
-                        <option value="sidama">Sidama</option>
-                        <option value="gambela">Gambela</option>
-                        <option value="benishangul_gumuz">Benishangul-Gumuz</option>
-                        <option value="southern_nations">SNNP (Southern Nations, Nationalities, and Peoples)</option>
-                        <option value="harari">Harari</option>
-                        <option value="dire_dawa">Dire Dawa</option>
-                    </select>
-                </div>
                 <div class="form-section">
                     <label for="specialty">Specialty:</label>
-                    <select id="specialty" name="specialty" style="border-radius: 6px; border-color: #c9c8c8" required>
+                    <select id="specialty" name="specialty" style="border-radius: 6px; border-color: #c9c8c8" >
                         <option value="" disabled selected>Select your specialty</option>
                         <option value="herbalist">Herbalist</option>
                         <option value="traditionalhealer">Traditional Healer </option>
@@ -215,7 +201,7 @@ label{
                 </div>
                 <div class="form-section">
                     <label for="certificate">Certificate and ID(could be national, kebele) (PDF):</label>
-                    <input type="file" id="certificate" name="certificate" accept="application/pdf" required>
+                    <input type="file" id="certificate" name="certificate" accept="application/pdf">
                 </div>
             </div>
 
@@ -225,7 +211,6 @@ label{
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
-
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
