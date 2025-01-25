@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('last_name', 50);
             $table->string('email', 100)->unique();
             $table->binary('password');
+            $table->date('dob')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('google_id', 255)->nullable();
             $table->string('phone', 15)->nullable();
             $table->text('bio')->nullable();

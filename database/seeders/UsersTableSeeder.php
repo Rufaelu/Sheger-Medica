@@ -22,6 +22,8 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'Doe',
             'email' => 'john.doe@example.com',
             'password' => bcrypt('password123'), // Use bcrypt instead of bin2hex
+            'dob' => '1990-01-01',
+            'gender' => 'male',
             'google_id' => null,
             'phone' => '1234567890',
             'created_at' => now(),
@@ -34,6 +36,9 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'Smith',
             'email' => 'jane.smith@example.com',
             'password' => bcrypt('password123'), // Use bcrypt instead of bin2hex
+            'dob' => '1990-01-01',
+            'gender' => 'female',
+            'google_id' => null,
             'phone' => '9876543210',
             'created_at' => now(),
             'updated_at' => now(),
@@ -45,6 +50,9 @@ class UsersTableSeeder extends Seeder
             'last_name' => 'User',
             'email' => 'admin@example.com',
             'password' => bcrypt('adminpassword'), // Use bcrypt instead of bin2hex
+            'dob' => '1990-01-01',
+            'gender' => 'female',
+            'google_id' => null,
             'phone' => '1231231234',
             'created_at' => now(),
             'updated_at' => now(),
