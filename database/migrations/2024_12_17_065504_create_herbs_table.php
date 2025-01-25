@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('risks')->nullable();
             $table->string('image_path', 255)->nullable();
             $table->unsignedBigInteger('posted_by');
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
 
             $table->foreign('posted_by')->references('user_id')->on('users');

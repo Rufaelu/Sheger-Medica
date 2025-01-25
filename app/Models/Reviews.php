@@ -12,7 +12,6 @@ class Reviews extends Model
 
     protected $fillable = [
         'user_id',
-        'practitioner_id',
         'remedy_id',
         'rating',
         'comments',
@@ -26,13 +25,13 @@ class Reviews extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    public function practitioner()
-    {
-        return $this->belongsTo(Practitioner::class, 'practitioner_id', 'practitioner_id');
-    }
 
     public function remedy()
     {
         return $this->belongsTo(Remedy::class, 'remedy_id', 'remedy_id');
+    }
+    public function herbs()
+    {
+        return $this->belongsTo(Herbs::class, 'herb_id', 'herb_id');
     }
 }

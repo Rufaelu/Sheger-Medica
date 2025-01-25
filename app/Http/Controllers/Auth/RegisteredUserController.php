@@ -35,6 +35,10 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+//todo: Update the input validation
+//? asd
+//*
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

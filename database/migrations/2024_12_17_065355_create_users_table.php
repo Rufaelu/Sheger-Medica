@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->binary('password');
             $table->string('google_id', 255)->nullable();
-            $table->enum('role', ['Regular', 'Practitioner', 'Admin'])->default('Regular');
             $table->string('phone', 15)->nullable();
-            $table->string('region', 100)->nullable();
             $table->text('bio')->nullable();
+            $table->text('specialties')->nullable();
+            $table->decimal('average_rating', 3, 2)->default(0.00)->nullable();
+            $table->enum('approval_status', ['pending', 'approved', 'rejected'])->default('pending')->nullable();
             $table->string('profile_picture', 255)->nullable();
             $table->timestamps();
         });

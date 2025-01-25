@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id('review_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('practitioner_id')->nullable();
             $table->unsignedBigInteger('remedy_id')->nullable();
             $table->integer('rating')->check('rating >= 1 AND rating <= 5');
             $table->text('comments')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('practitioner_id')->references('practitioner_id')->on('practitioners');
             $table->foreign('remedy_id')->references('remedy_id')->on('remedies');
         });
     }
