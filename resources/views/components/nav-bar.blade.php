@@ -78,15 +78,19 @@
             <li><a href="#">Practitioners</a></li>
             @auth
                 <li><a href="#">Profile</a></li>
-            @else
-                <li><a href="#">Login/Signup</a></li>
-            @endauth
-            
-            @if(Auth::user()->hasRole('admin'))
+                   @if(Auth::user()->hasRole('admin'))
             <li><a href="{{route('admin')}}">Dashboard</a></li>
             @endif
+            @else
+                <li><a href="{{route('register')}}">Login/Signup</a></li>
+            @endauth
+
+
             <li><a href="#">Contact Us</a></li>
             <li><a href="#">About Us</a></li>
+            @auth
+            <li><a href="{{route('logout')}}">Logout</a></li>
+            @endauth
 
         </ul>
         <button class="nav-toggle" aria-label="toggle navigation">

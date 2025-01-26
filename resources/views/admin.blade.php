@@ -174,10 +174,11 @@
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve({
-                    totalUsers: 10482,
-                    herbsInCatalog: 573,
-                    practitioners: 237,
-                    activeUsers: 573
+                    totalUsers: {{$totalUsers}},
+                    herbsInCatalog: {{$totalHerbs}},
+                    practitioners: {{$practitionersCount}},
+                    totalarticles: {{$totalArticles}},
+                    totalremedies: {{$totalRemedies}}
                 });
             }, 1000);
         });
@@ -201,7 +202,7 @@
             setTimeout(() => {
                 resolve({
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    data: [1200, 1900, 3000, 5000, 4000, 3000]
+                    data: @json($data)
                 });
             }, 1000);
         });
@@ -217,7 +218,7 @@
                         <p>${data.totalUsers}</p>
                     </div>
                     <div class="card">
-                        <h3>Herbs in Catalog</h3>
+                        <h3>Total Herbs</h3>
                         <p>${data.herbsInCatalog}</p>
                     </div>
                     <div class="card">
@@ -225,8 +226,12 @@
                         <p>${data.practitioners}</p>
                     </div>
                     <div class="card">
-                        <h3>Active Users (24h)</h3>
-                        <p>${data.activeUsers}</p>
+                        <h3>Total Articles</h3>
+                        <p>${data.totalarticles}</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Remedies</h3>
+                        <p>${data.totalremedies}</p>
                     </div>
                 </div>
                 <div id="chart">
@@ -239,7 +244,7 @@
 
     function renderApplications(applications) {
         let tableRows = applications.map(app => `
-<!--                <form action="" method="get">-->
+        <!--                <form action="" method="get">-->
                 <tr>
                     <td>${app.id}</td>
                     <td>${app.name}</td>
@@ -250,7 +255,7 @@
                       <a href="{{ route('verify', ['id' => 6]) }}"> <button type="submit" class="btn btn-success" value="Process"  >Proceed</button></a>
                     </td>
                 </tr>
-<!--         </form>-->
+        <!--         </form>-->
             `).join('');
 
         const content = `

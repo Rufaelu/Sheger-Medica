@@ -36,6 +36,7 @@ class User extends Model  implements AuthenticatableContract
     ];
 
     public $timestamps = true;
+    
     protected $hidden = [
         'password',
         'remember_token',

@@ -91,13 +91,15 @@ class RegisteredUserController extends Controller
 
     // Redirect with success message
     return redirect()->route('admin');
-  
+
 }
+
+
 
     /**
      * Helper function to split name into first and last names.
      */
-    private function splitName(string $name): array
+   public static function splitName(string $name): array
     {
         $parts = explode(' ', $name, 2);
         $firstName = $parts[0];

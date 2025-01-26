@@ -16,7 +16,7 @@ use Spatie\Permission\Models\Role;
 // }
 // )->name('Landing');
 
-Route::get('/', [Homepage::class, 'index'])->name('Landing');
+Route::get('/', [Homepage::class, 'index'])->name('Home');
 
 Route::get('/admin', function () {
     return view('dashboard');
@@ -48,18 +48,11 @@ Route::middleware('auth')->group(function () {
 // Admin routes
 Route::get('/admin/dashboard', [Adminpage::class, 'index'])->middleware(['auth'])->name('admin');
 
-// Practitioner routes
-Route::get('Home', function () {
-
-    return view('Home');
-}
-)->name('Home')->middleware('auth');
 
 Route::get('post', function () {
     if (Auth::user()->hasRole('Practitioner')) {
         return view('post', ['role' => Auth::user()->role]);
     }
-
 }
 )->name('post')->middleware('auth');
 
@@ -81,5 +74,15 @@ Route::get('/remedies/{id}', [RemediesController::class, 'show'])->name('remedie
 Route::get('/remedies/{id}/edit', [RemediesController::class, 'edit'])->name('remedies.edit');
 Route::put('/remedies/{id}', [RemediesController::class, 'update'])->name('remedies.update');
 Route::delete('/remedies/{id}', [RemediesController::class, 'destroy'])->name('remedies.destroy');
+
+
+
+//! Admin Routes
+// Route::get('admin_profile')
+
+
+
+
+
 
 require __DIR__ . '/auth.php';
