@@ -501,10 +501,9 @@ namespace App\Models {
     /**
      * App\Models\User
      *
-     * @property \Illuminate\Support\Carbon|null $email_verified_at
      * @property string|null $remember_token
-     * @property timestamp|null $updated_at
-     * @property timestamp|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
      * @property string|null $certificate
      * @property string|null $profile_picture
      * @property enum('pending','approved','rejected')|null $approval_status
@@ -513,7 +512,8 @@ namespace App\Models {
      * @property string|null $bio
      * @property string|null $phone
      * @property string|null $google_id
-     * @property date $dob
+     * @property enum('male','female')|null $gender
+     * @property date|null $dob
      * @property blob $password
      * @property string $email
      * @property string $last_name
@@ -541,6 +541,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User whereDob($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User whereBio($value)
@@ -552,7 +553,6 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User role()
      * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole()
      * @method static \Illuminate\Database\Eloquent\Builder|User permission()

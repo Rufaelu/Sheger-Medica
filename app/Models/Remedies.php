@@ -23,9 +23,9 @@ class Remedies extends Model
     public $timestamps = true;
 
     // Relationships
-    public function herb()
+       public function herbs()
     {
-        return $this->belongsTo(Herb::class, 'herb_id', 'herb_id');
+        return $this->belongsToMany(Herb::class, 'herb_remedy', 'remedy_id', 'herb_id');
     }
 
     public function user()

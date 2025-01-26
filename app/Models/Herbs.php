@@ -29,8 +29,8 @@ class Herbs extends Model
         return $this->belongsTo(User::class, 'posted_by', 'user_id');
     }
 
-    public function remedies()
+     public function remedies()
     {
-        return $this->hasMany(Remedy::class, 'herb_id', 'herb_id');
+        return $this->belongsToMany(Remedy::class, 'herb_remedy', 'herb_id', 'remedy_id');
     }
 }

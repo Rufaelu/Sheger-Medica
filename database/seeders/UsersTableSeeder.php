@@ -28,6 +28,22 @@ class UsersTableSeeder extends Seeder
             'phone' => '1234567890',
             'created_at' => now(),
             'updated_at' => now(),
+        ]);
+
+        User::create([
+            'first_name' => 'El',
+            'last_name' => 'Moe',
+            'email' => 'el.moe@example.com',
+            'password' => bcrypt('password123'), // Use bcrypt instead of bin2hex
+            'dob' => '1996-01-01',
+            'gender' => 'male',
+            'google_id' => null,
+            'specialties' => 'Cardiology',
+            'certificate'=>null,
+            'phone' => '1234567890',
+            'approval_status'=>'pending',
+            'created_at' => now(),
+            'updated_at' => now(),
         ])->assignRole(Role::findByName('practitioner', 'practitioner')); // Specify the guard
 
         // Admin User
@@ -53,7 +69,10 @@ class UsersTableSeeder extends Seeder
             'dob' => '1990-01-01',
             'gender' => 'female',
             'google_id' => null,
+            'specialties' => 'Herbal Medicine',
+            'certificate'=>null,
             'phone' => '1231231234',
+            'approval_status'=>'pending',
             'created_at' => now(),
             'updated_at' => now(),
         ])->assignRole(Role::findByName('practitioner', 'practitioner')); // Specify the guard

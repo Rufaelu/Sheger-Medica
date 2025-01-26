@@ -1,12 +1,14 @@
-<style>/* Header styles */
+<style>
+    /* Header styles */
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #333;
-        padding: 1rem 2rem;
-        color: white;
+        background-color: #33333339;
+        padding: 0.1rem 2rem;
+        color: rgb(22, 22, 22);
         position: relative;
+        border-radius: 10px;
     }
 
     .header .logo {
@@ -27,20 +29,20 @@
 
     .nav-links a {
         text-decoration: none;
-        color: white;
+        color: rgb(23, 23, 23);
         font-size: 1rem;
         transition: color 0.3s;
     }
 
     .nav-links a:hover {
-        color: #f7327a;
+        color: #81f732;
     }
 
     .nav-toggle {
         display: none;
         background: none;
         border: none;
-        color: white;
+        color:  rgb(22, 22, 22);
         font-size: 1.5rem;
         cursor: pointer;
     }
@@ -74,9 +76,18 @@
             <li><a href="#">Herbs</a></li>
             <li><a href="#">Remedy</a></li>
             <li><a href="#">Practitioners</a></li>
-            <li><a href="#">Profile</a></li>
+            @auth
+                <li><a href="#">Profile</a></li>
+            @else
+                <li><a href="#">Login/Signup</a></li>
+            @endauth
+            
+            @if(Auth::user()->hasRole('admin'))
+            <li><a href="{{route('admin')}}">Dashboard</a></li>
+            @endif
             <li><a href="#">Contact Us</a></li>
             <li><a href="#">About Us</a></li>
+
         </ul>
         <button class="nav-toggle" aria-label="toggle navigation">
             <i class="fas fa-bars"></i>

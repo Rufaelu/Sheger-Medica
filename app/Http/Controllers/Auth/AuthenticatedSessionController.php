@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Spatie\Permission\Traits\HasRoles;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,7 +29,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('aadmin', absolute: false));
+        if(Auth::user()->hasRole('admin')){
+        return redirect()->route('Home');
+        }
+        elseif(Auth::user()->hasRole('practitioner')){
+            // dd('Practitioner');
+            return redirect()->route('Home');
+        }
+        else{
+            // dd('User');
+            return redirect()->route('Home');        }
     }
 
     /**
@@ -36,7 +46,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        if (Auth::guard('admin')->check()) {
+        // Logout admin user
+        Auth::guard('admin')->logout();
+    } elseif (Auth::guard('practitioner')->check()) {
+        // Logout practitioner user
+        Auth::guard('practitioner')->logout();
+    } else {
+        // Logout regular user (default to 'web' guard)
         Auth::guard('web')->logout();
+    }
 
         $request->session()->invalidate();
 

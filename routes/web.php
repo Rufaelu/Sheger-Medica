@@ -1,29 +1,32 @@
 <?php
 
+use App\Http\Controllers\Adminpage;
+use App\Http\Controllers\ApproveorReject;
+use App\Http\Controllers\Homepage;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\ApproveorReject;
+use Spatie\Permission\Models\Role;
 
 //Route::get('/', function () {
 //    return view('auth/register');
 //});
-Route::get('/',[RegisteredUserController::class,'create']);
+// Route::get('/',[RegisteredUserController::class,'create']);
+// Route::get('/', function () {
+//     return view('Home', ['role' => 'guest']);
+// }
+// )->name('Landing');
+
+Route::get('/', [Homepage::class, 'index'])->name('Landing');
 
 Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('approve',[ApproveorReject::class,'approvePractitioner'])->name('approve');
-Route::post('reject',[ApproveorReject::class,'rejectPractitioner'])->name('reject');
+Route::post('approve', [ApproveorReject::class, 'approvePractitioner'])->name('approve');
+Route::post('reject', [ApproveorReject::class, 'rejectPractitioner'])->name('reject');
 //Route::post('adduser',[register::class,'store'])->name('adduser');
 
-Route::get('/admindashoard',function (){
-    return view('admin');
-})->middleware(['auth', 'verified'])->name('aadmin');
-
-Route::get('/verify/{id}',[\App\Http\Controllers\PractitionerVerify::class,'index'])->name('verify');
-
+Route::get('/verify/{id}', [Adminpage::class, 'get_user_details'])->name('verify');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,4 +34,52 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Route::get('/welcome', function () {
+
+//     if(Auth::user()->hasRole('practitioner')){
+//         return redirect()->route('practitioner');
+//     }
+//     else{
+//         return redirect()->route('user');
+//     }
+//     return view('welcome',['user_id'=>Auth::user()->id,'role'=>Auth::user()->role]);
+// })->name('welcome')->middleware('auth');
+
+// Admin routes
+Route::get('/admin/dashboard', [Adminpage::class, 'index'])->middleware(['auth'])->name('admin');
+
+// Practitioner routes
+Route::get('Home', function () {
+
+    return view('Home');
+}
+)->name('Home')->middleware('auth');
+
+Route::get('post', function () {
+    if (Auth::user()->hasRole('Practitioner')) {
+        return view('post', ['role' => Auth::user()->role]);
+    }
+
+}
+)->name('post')->middleware('auth');
+
+// Regular user routes
+Route::get('/user/home', [])->name('user')->middleware('auth');
+
+//! Herbs routes
+Route::get('/herbs', [HerbsController::class, 'index'])->name('herbs');
+Route::post('/herbs', [HerbsController::class, 'store'])->name('herbs.store');
+Route::get('/herbs/{id}', [HerbsController::class, 'show'])->name('herbs.show');
+Route::get('/herbs/{id}/edit', [HerbsController::class, 'edit'])->name('herbs.edit');
+Route::put('/herbs/{id}', [HerbsController::class, 'update'])->name('herbs.update');
+Route::delete('/herbs/{id}', [HerbsController::class, 'destroy'])->name('herbs.destroy');
+
+//! Remedies routes
+Route::get('/remedies', [RemediesController::class, 'index'])->name('remedies');
+Route::post('/remedies', [RemediesController::class, 'store'])->name('remedies.store');
+Route::get('/remedies/{id}', [RemediesController::class, 'show'])->name('remedies.show');
+Route::get('/remedies/{id}/edit', [RemediesController::class, 'edit'])->name('remedies.edit');
+Route::put('/remedies/{id}', [RemediesController::class, 'update'])->name('remedies.update');
+Route::delete('/remedies/{id}', [RemediesController::class, 'destroy'])->name('remedies.destroy');
+
+require __DIR__ . '/auth.php';

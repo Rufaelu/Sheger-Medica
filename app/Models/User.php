@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
 
@@ -13,7 +12,7 @@ class User extends Model  implements AuthenticatableContract
 {
     use \Illuminate\Auth\Authenticatable;
 
-    use HasFactory,HasRoles;
+    use HasFactory, HasRoles;
 
     protected $table = 'users';
 
@@ -27,13 +26,16 @@ class User extends Model  implements AuthenticatableContract
         'password',
         'phone',
         'bio',
+        'gender',
+        'dob',
         'specialties',
+        'certificate',
         'average_rating',
         'approval_status',
         'profile_picture',
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
     protected $hidden = [
         'password',
         'remember_token',

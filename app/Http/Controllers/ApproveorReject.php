@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class ApproveorReject extends Controller
@@ -12,13 +13,14 @@ class ApproveorReject extends Controller
         $user = User::findOrFail($userId);
 
         // Approve the user
-        $user->update([
-            'approval_status' => 'approved',
-        ]);
+
 
         // Assign practitioner role
         if (!$user->hasRole('practitioner', 'practitioner')) {
             $user->assignRole(Role::findByName('practitioner', 'practitioner'));
+            $user->update([
+                'approval_status' => 'approved',
+            ]);
         }
 
 
@@ -28,17 +30,13 @@ class ApproveorReject extends Controller
     {
         $user = User::findOrFail($userId);
 
-        // Approve the user
+        // reject the user
         $user->update([
             'approval_status' => 'rejected',
         ]);
 
-        // Assign practitioner role
-        if (!$user->hasRole('practitioner', 'practitioner')) {
-            $user->assignRole(Role::findByName('practitioner', 'practitioner'));
-        }
 
 
-        return redirect()->back()->with('message', 'Practitioner approved successfully!');
+        return redirect()->back()->with('message', 'Practitioner Rejected successfully!');
     }
 }
