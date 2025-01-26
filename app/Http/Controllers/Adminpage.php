@@ -14,7 +14,7 @@ class Adminpage extends Controller
 {
     public function index()
     {
-        $users = User::where('approval_status', 'pending')
+        $applications = User::where('approval_status', 'pending')
             ->whereNotNull('specialties')
             ->get();
         $admins = User::role('admin', 'admin')->get();
@@ -52,14 +52,15 @@ class Adminpage extends Controller
         // Count all practitioners (approval_status = 'accepted')
         $practitionersCount = User::where('approval_status', 'accepted')->count();
 
-        return view('admin', ['users' => $users, 'totalUsers' => $totalUsers, 'practitionersCount' => $practitionersCount, 'totalArticles' => $totalArticles, 'totalRemedies' => $totalRemedies, 'totalHerbs' => $totalHerbs, 'admins' => $admins, 'data' => $data]);
+        return view('admin', ['applications' => $applications, 'totalUsers' => $totalUsers, 'practitionersCount' => $practitionersCount, 'totalArticles' => $totalArticles, 'totalRemedies' => $totalRemedies, 'totalHerbs' => $totalHerbs, 'admins' => $admins, 'data' => $data]);
     }
 
     public function get_user_details(string $id)
     {
 
         $user = User::findOrFail($id);
-        return view('admin_varify_form', ['user' => $user]);
+        return view('admin_verify_form', ['user' => $user]);
+        
     }
 
     public function admindprofile($id)

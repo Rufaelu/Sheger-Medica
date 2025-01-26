@@ -18,15 +18,22 @@ use Spatie\Permission\Models\Role;
 
 Route::get('/', [Homepage::class, 'index'])->name('Home');
 
-Route::get('/admin', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/admin', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('approve', [ApproveorReject::class, 'approvePractitioner'])->name('approve');
-Route::post('reject', [ApproveorReject::class, 'rejectPractitioner'])->name('reject');
+Route::post('approve/{id}', [ApproveorReject::class, 'approvePractitioner'])->name('approve');
+Route::post('reject/{id}', [ApproveorReject::class, 'rejectPractitioner'])->name('reject');
+
+
 //Route::post('adduser',[register::class,'store'])->name('adduser');
 
+
+
 Route::get('/verify/{id}', [Adminpage::class, 'get_user_details'])->name('verify');
+
+Route::post('download/{path}', [download::class, 'download_certificate'])->middleware('auth');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,7 +53,8 @@ Route::middleware('auth')->group(function () {
 // })->name('welcome')->middleware('auth');
 
 // Admin routes
-Route::get('/admin/dashboard', [Adminpage::class, 'index'])->middleware(['auth'])->name('admin');
+
+Route::get('dashboard', [Adminpage::class, 'index'])->middleware(['auth'])->name('admin');
 
 
 Route::get('post', function () {
@@ -56,8 +64,6 @@ Route::get('post', function () {
 }
 )->name('post')->middleware('auth');
 
-// Regular user routes
-Route::get('/user/home', [])->name('user')->middleware('auth');
 
 //! Herbs routes
 Route::get('/herbs', [HerbsController::class, 'index'])->name('herbs');

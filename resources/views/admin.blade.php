@@ -183,14 +183,12 @@
             }, 1000);
         });
     }
+    const applications = @json($applications);
 
     function fetchApplications() {
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve([
-                    { id: 1, name: "John Doe", email: "john@example.com", specialties: "Herbal Medicine, Acupuncture", region: "Addis Ababa" },
-                    { id: 2, name: "Jane Smith", email: "jane@example.com", specialties: "Traditional Healing, Aromatherapy", region: "Gondar" },
-                    { id: 3, name: "Abebe Kebede", email: "abebe@example.com", specialties: "Medicinal Plants, Holistic Healing", region: "Bahir Dar" }
 
                 ]);
             }, 1000);
@@ -241,21 +239,43 @@
         document.getElementById('mainContent').innerHTML = content;
         renderChart();
     }
+    function calculateAge(dob) {
+    // Convert the DOB string to a Date object
+    const birthDate = new Date(dob);
+    const today = new Date();
 
-    function renderApplications(applications) {
+    // Calculate the difference in years
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    // Adjust for the month and day to ensure it's a full year
+    const isBeforeBirthday =
+        today.getMonth() < birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate());
+
+    // Subtract 1 if the current date is before the birthday
+    if (isBeforeBirthday) {
+        age--;
+    }
+
+    return age;
+}
+
+    function renderApplications() {
         let tableRows = applications.map(app => `
-        <!--                <form action="" method="get">-->
+
                 <tr>
-                    <td>${app.id}</td>
-                    <td>${app.name}</td>
+                    <td>${app.user_id}</td>
+                    <td>${app.first_name +' '+ app.last_name}</td>
                     <td>${app.email}</td>
                     <td>${app.specialties}</td>
-                    <td>${app.region}</td>
+                    <td>${app.gender}</td>
+                    <td>${calculateAge(app.dob)}</td>
                     <td>
-                      <a href="{{ route('verify', ['id' => 6]) }}"> <button type="submit" class="btn btn-success" value="Process"  >Proceed</button></a>
+                      <a href="verify/${app.user_id}"> <button type="submit" class="btn btn-success" value="Process"  >Proceed</button></a>
                     </td>
                 </tr>
-        <!--         </form>-->
+
+
             `).join('');
 
         const content = `
@@ -267,7 +287,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Specialties</th>
-                            <th>Region</th>
+                            <th>Gender</th>
+                            <th>Age</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

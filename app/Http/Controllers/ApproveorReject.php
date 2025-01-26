@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 
 class ApproveorReject extends Controller
 {
-    public function approvePractitioner($userId)
+    public function approvePractitioner($id)
     {
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
 
         // Approve the user
-
-
         // Assign practitioner role
         if (!$user->hasRole('practitioner', 'practitioner')) {
             $user->assignRole(Role::findByName('practitioner', 'practitioner'));
@@ -24,11 +22,11 @@ class ApproveorReject extends Controller
         }
 
 
-        return redirect()->back()->with('message', 'Practitioner approved successfully!');
-    }
-    public function rejectPractitioner($userId)
+        return redirect(route('admin'));
+        }
+    public function rejectPractitioner($id)
     {
-        $user = User::findOrFail($userId);
+        $user = User::findOrFail($id);
 
         // reject the user
         $user->update([
@@ -37,6 +35,6 @@ class ApproveorReject extends Controller
 
 
 
-        return redirect()->back()->with('message', 'Practitioner Rejected successfully!');
+        return redirect(route('admin'));
     }
 }
