@@ -132,6 +132,10 @@
                 <input type="text" id="local_name" name="local_name" required>
             </div>
             <div class="form-group">
+
+                <input type="hidden" name="posted_by" value="{{ Auth::user()->user_id }}">
+            </div>
+            <div class="form-group">
                 <label for="scientific_name">Scientific Name:</label>
                 <input type="text" id="scientific_name" name="scientific_name">
             </div>
@@ -163,12 +167,14 @@
                 <input type="text" id="title" name="title" required>
             </div>
             <div class="form-group">
+                <input type="hidden" name="posted_by" value="{{ Auth::user()->user_id }}">
+            </div>
+            <div class="form-group">
                 <label for="herb_ids">Select Herbs*:</label>
                 <select id="herb_ids" name="herb_ids[]" multiple required>
-                    <option value="">Select Herbs</option>
-                    {{-- @foreach($herbs as $herb)
+                    @foreach($herbs as $herb)
                         <option value="{{ $herb->herb_id }}">{{ $herb->local_name }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">
@@ -198,24 +204,9 @@
                 <label for="article_content">Content*:</label>
                 <textarea id="article_content" name="content" required></textarea>
             </div>
-            <div class="form-group">
-                <label for="article_image">Featured Image:</label>
-                <input type="file" id="article_image" name="image" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="article_tags">Tags (comma-separated):</label>
-                <input type="text" id="article_tags" name="tags">
-            </div>
-            <div class="form-group">
-                <label for="article_category">Category*:</label>
-                <select id="article_category" name="category" required>
-                    <option value="">Select Category</option>
-                    <option value="herbal_medicine">Herbal Medicine</option>
-                    <option value="traditional_practices">Traditional Practices</option>
-                    <option value="health_tips">Health Tips</option>
-                    <option value="research">Research</option>
-                </select>
-            </div>
+
+
+
             <button type="submit">Submit Article</button>
         </form>
     </div>

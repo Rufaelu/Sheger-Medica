@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Herb_remedy;
 class Herbs extends Model
 {
     protected $table = 'herbs';
@@ -18,7 +18,6 @@ class Herbs extends Model
         'risks',
         'image_path',
         'posted_by',
-        'status',
     ];
 
     public $timestamps = true;
@@ -29,8 +28,9 @@ class Herbs extends Model
         return $this->belongsTo(User::class, 'posted_by', 'user_id');
     }
 
-     public function remedies()
+    public function remedies()
     {
-        return $this->belongsToMany(Remedy::class, 'herb_remedy', 'herb_id', 'remedy_id');
+        return $this->belongsToMany(Remedies::class, 'herb_remedy', 'herb_id', 'remedy_id');
     }
+
 }

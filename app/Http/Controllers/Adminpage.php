@@ -50,7 +50,7 @@ class Adminpage extends Controller
         $totalHerbs = Herbs::count();
 
         // Count all practitioners (approval_status = 'accepted')
-        $practitionersCount = User::where('approval_status', 'accepted')->count();
+        $practitionersCount = User::where('approval_status', 'approved')->count();
 
         return view('admin', ['applications' => $applications, 'totalUsers' => $totalUsers, 'practitionersCount' => $practitionersCount, 'totalArticles' => $totalArticles, 'totalRemedies' => $totalRemedies, 'totalHerbs' => $totalHerbs, 'admins' => $admins, 'data' => $data]);
     }
@@ -60,7 +60,7 @@ class Adminpage extends Controller
 
         $user = User::findOrFail($id);
         return view('admin_verify_form', ['user' => $user]);
-        
+
     }
 
     public function admindprofile($id)

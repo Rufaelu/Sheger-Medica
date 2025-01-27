@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Herbs;
+use App\Models\Herb_remedy;
 
 class Remedies extends Model
 {
@@ -12,20 +14,22 @@ class Remedies extends Model
 
     protected $fillable = [
         'title',
-        'herb_id',
         'preparation_steps',
         'dosage',
         'ailment',
         'posted_by',
-        'status',
     ];
 
     public $timestamps = true;
 
     // Relationships
+    public function herb()
+    {
+        return $this->belongsToMany(Herbs::class, 'herb_remedy', 'remedy_id', 'herb_id');
+    }
        public function herbs()
     {
-        return $this->belongsToMany(Herb::class, 'herb_remedy', 'remedy_id', 'herb_id');
+        return $this->belongsToMany(Herbs::class, 'herb_remedy', 'remedy_id', 'herb_id');
     }
 
     public function user()
@@ -33,8 +37,5 @@ class Remedies extends Model
         return $this->belongsTo(User::class, 'posted_by', 'user_id');
     }
 
-    public function reviews()
-    {
-        return $this->hasMany(Review::class, 'remedy_id', 'remedy_id');
-    }
+
 }

@@ -11,11 +11,14 @@ class Homepage extends Controller
     public function index()
     {
         $herbs = Herbs::all();
-        $remedies = Remedies::all();
         $articles = Articles::all();
-        $users=Pratitionerpage::home();
+        $users = Pratitionerpage::home();
+
+        $remedies = Remedies::with('herbs')->get();
+
+       
 
         return view('Home', ['herbs' => $herbs, 'remedies' => $remedies, 'articles' => $articles, 'practitioners' => $users]);
     }
-    
+
 }

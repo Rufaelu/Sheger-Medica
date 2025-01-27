@@ -149,13 +149,12 @@
 </head>
 <body>
 <header>
+    <x-navbar />
     <div class="container">
-        <div id="branding">
-            <h1><span class="highlight">Sheger</span> Medica</h1>
-        </div>
+
         <nav>
             <ul>
-                <li class="current"><a href="#" id="dashboardLink">Dashboard</a></li>
+                <li class="current" style="visibility: hidden;"><a href="#" id="dashboardLink">Dashboard</a></li>
                 <li><a href="#" id="applicationsLink">Practitioner Applications</a></li>
             </ul>
         </nav>

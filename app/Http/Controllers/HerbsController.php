@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Herbs;
 class HerbsController extends Controller
 {
     // Display a listing of herbs
     public function index()
     {
-        $herbs = Herb::with('user')->get();
-
-        return response()->json($herbs);
+        $herbs = Herbs::all();
+        return view('herbs.all', ['herbs' => $herbs]);
     }
 
     // Store a newly created herb
@@ -25,37 +24,48 @@ class HerbsController extends Controller
             'risks' => 'nullable|string',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5048',
             'posted_by' => 'required|exists:users,user_id',
-            'status' => 'required|boolean',
         ]);
 
         // Handle image upload
         if ($request->hasFile('image_path')) {
-            $path = public_path('images/herbs'); // Define the folder path
 
-// Check if the folder exists, if not, create it
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true); // Create folder with appropriate permissions
+            $herbsPath = public_path('images/herbs'); // Define the public/certificates path
+
+            // Check if the directory exists, and create it if it doesn't
+            if (!File::exists($herbsPath)) {
+                File::makeDirectory($herbsPath, 0755, true); // Create the directory with permissions
             }
 
-// Store the image in the specified folder
-            $validated['image_path'] = $request->file('image_path')->store('images/herbs', 'public');
+            // Save the file in the public/certificates directory
+            $herb = $request->file('image_path');
+            $fileName = uniqid() . '.' . $herb->getClientOriginalExtension(); // Generate a unique file name
+            $herb->move($herbsPath, $fileName); // Move the file to the directory
+
+            $validated['image_path'] = 'images/herbs/' . $fileName;
         }
 
-        Herb::create($validated);
-        return response()->json(['message' => 'Herb created successfully!'], 201);
+
+        Herbs::create($validated);
+        return redirect()->route('post');
     }
+
 
     // Display a specific herb
     public function show($id)
     {
-        $herb = Herb::with(['user', 'remedies'])->findOrFail($id);
+        $herb = Herbs::with(['user', 'remedies'])->findOrFail($id);
         return view('herbs.show', ['herb' => $herb]);
+    }
+    public function populatePost()
+    {
+        $herbs = Herbs::all();
+        return view('post',['herbs' => $herbs]);
     }
 
     // Show the form for editing a herb
     public function edit($id)
     {
-        $herb = Herb::findOrFail($id);
+        $herb = Herbs::findOrFail($id);
         return view('herbs.edit', compact('herb'));
     }
 
@@ -68,11 +78,9 @@ class HerbsController extends Controller
             'region' => 'required|string|max:255',
             'benefits' => 'required|string',
             'risks' => 'nullable|string',
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|boolean',
-        ]);
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'        ]);
 
-        $herb = Herb::findOrFail($id);
+        $herb = Herbs::findOrFail($id);
 
         // Handle image upload
         if ($request->hasFile('image_path')) {

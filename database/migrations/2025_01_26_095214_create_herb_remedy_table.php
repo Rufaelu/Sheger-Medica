@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('herb_remedy', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('herb_id')->constrained()->onDelete('cascade');
-            $table->foreignId('remedy_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('herb_id'); // Foreign key to herbs.herb_id
+            $table->unsignedBigInteger('remedy_id'); // Foreign key to remedies.remedy_id
             $table->timestamps();
 
+            $table->foreign('herb_id')->references('herb_id')->on('herbs')->onDelete('cascade');
+            $table->foreign('remedy_id')->references('remedy_id')->on('remedies')->onDelete('cascade');
         });
     }
 

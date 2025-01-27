@@ -11,20 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="logo">MERIGETA</div>
-        <nav class="nav">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="../Final About Us/about_us.html">About Us</a></li>
-                <li><a href="../FINAL CONTACT US/contact_us.html">Contact Us</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </header>
+  <x-nav-bar />
 
     <!-- Contact Section -->
     <section class="contact-section">

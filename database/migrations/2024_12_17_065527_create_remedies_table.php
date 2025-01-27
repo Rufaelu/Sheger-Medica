@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('remedies', function (Blueprint $table) {
             $table->id('remedy_id');
             $table->string('title', 100);
-            $table->unsignedBigInteger('herb_id');
             $table->text('preparation_steps');
             $table->string('dosage', 100)->nullable();
             $table->string('ailment', 100);
             $table->unsignedBigInteger('posted_by');
             $table->timestamps();
 
-            $table->foreign('herb_id')->references('herb_id')->on('herbs');
             $table->foreign('posted_by')->references('user_id')->on('users');
         });
     }

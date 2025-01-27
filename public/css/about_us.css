@@ -5,71 +5,11 @@ body {
   background: #f4f4f4;
   color: #333;
 }
- 
- .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  height:50px;
-  padding: 0.5rem 2rem;
-  color: white;
-}
 
-.header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-}
 
-.nav-links.active {
-  display: block;
-  position: absolute;
-  top: 30px;
-  right: 10px;
-  background: #333;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 1000;
-}
 
-.nav-links li {
-  margin: 10px 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-size: 1rem;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #f7327a;
-} 
-
-/* Nav Toggle Button */
- .nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
- 
 /* Hero Section */
 .hero {
   height: 100vh;
@@ -131,7 +71,7 @@ body {
 .hero button:hover {
   background: #38761D;
   transform: scale(1.1);
-} 
+}
 
 /* About Us Section */
  .about-us {
@@ -140,7 +80,7 @@ body {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-} 
+}
 .about-us {
   padding: 50px 20px;
   background: #f4f4f4;
@@ -173,7 +113,7 @@ body {
   color: #333;
   animation: fadeInUp 1s;
 }
- 
+
 /* Mission Section */
 
 .mission {
@@ -207,11 +147,11 @@ body {
 }
 .mission-text .first-letter {
   font-size: 3.5rem;
-  color: #6A994E; 
+  color: #6A994E;
   font-weight: bold;
   float: top;
-  margin-right: 0.1em; 
-  line-height: 1.0; 
+  margin-right: 0.1em;
+  line-height: 1.0;
 }
 .mission-list ul {
   list-style: none;
@@ -404,8 +344,8 @@ body {
       opacity: 1;
       transform: translateY(0);
   }
-} 
- 
+}
+
 /* Button Styles */
  button {
   background: #6A994E;
@@ -480,5 +420,5 @@ button:hover {
   .about-us .story, .mission p, .values-content ul li {
       font-size: 0.9em;
   }
-} 
- 
+}
+

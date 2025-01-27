@@ -75,20 +75,8 @@
     </script>
 </head>
 <body>
-    <!-- <header class="header">
-        <div class="logo">MERIGETA</div>
-        <nav class="nav">
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="../FINAL CONTACT US/contact_us.html">Contact Us</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Toggle Navigation" onclick="toggleMenu()">
-                &#9776;
-            </button>
-        </nav>
-    </header> -->
-    <x-navbar />
+
+    <x-nav-bar />
 
     <header class="hero">
         <h1>Welcome to Ethiopian Traditional Medicine Directory</h1>
@@ -107,12 +95,12 @@
                     <p>
                         Ethiopian traditional medicine has a history that dates back thousands of years. Rooted in indigenous
                         knowledge and practices, it has been a cornerstone of health and wellness for generations. Utilizing
-                        a rich variety of medicinal plants native to Ethiopia, healers have provided holistic solutions to 
+                        a rich variety of medicinal plants native to Ethiopia, healers have provided holistic solutions to
                         countless ailments.
                     </p>
                     <p>
-                        Our organization, MERIGETA, was founded in 2015 with the mission of preserving this ancient wisdom. 
-                        With a focus on research, documentation, and accessibility, we aim to connect modern audiences with 
+                        Our organization, MERIGETA, was founded in 2015 with the mission of preserving this ancient wisdom.
+                        With a focus on research, documentation, and accessibility, we aim to connect modern audiences with
                         the invaluable heritage of Ethiopian traditional medicine.
                     </p>
                 </div>
@@ -125,8 +113,8 @@
         <div class="mission-grid">
             <div class="mission-text">
                 <p>
-                    <span class="first-letter">O</span>ur mission is to preserve and promote the use of Ethiopian traditional herbs by making their benefits 
-                    accessible to everyone while ensuring sustainable harvesting practices. We aim to empower communities 
+                    <span class="first-letter">O</span>ur mission is to preserve and promote the use of Ethiopian traditional herbs by making their benefits
+                    accessible to everyone while ensuring sustainable harvesting practices. We aim to empower communities
                     by fostering the knowledge of ancient remedies that have stood the test of time.
                 </p>
             </div>

@@ -17,7 +17,7 @@ class Pratitionerpage extends Controller
         $articles = Articles::where('user_id', $id)->get();
         return view('Profile', ['practitioner' => $practitioner, 'herbs' => $herbs, 'remedies' => $remedies, 'articles' => $articles]);
     }
-
+        
     public function index()
     {
         $practitioners = User::all();
