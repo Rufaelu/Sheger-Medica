@@ -204,7 +204,9 @@
                 <label for="article_content">Content*:</label>
                 <textarea id="article_content" name="content" required></textarea>
             </div>
-
+            <div class="form-group">
+                <input type="hidden" name="author_id" value="{{ Auth::user()->user_id }}">
+            </div>
 
 
             <button type="submit">Submit Article</button>

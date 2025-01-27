@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\HerbsController;
 use App\Http\Controllers\RemediesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Practitionerpage;
 use App\Models\Herbs;
 
 
@@ -81,7 +82,7 @@ Route::delete('/articles/{id}', [ArticlesController::class, 'destroy'])->name('a
 
 //! Practitioner routes
 Route::get('/practitioner/{id}', [ProfileController::class, 'profile'])->name('practitioner.show');
-
+Route::get('/practitioners', [Practitionerpage::class, 'index'])->name('practitioners');
 //! Admin Routes
 // Route::get('admin_profile')
 

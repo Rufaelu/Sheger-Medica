@@ -35,10 +35,10 @@ class ProfileController extends Controller
 
      public function practitioner(){
         $user=Auth::user();
-        $remedies = Remedies::with('herbs')->where('posted_by',$user->id)->get();
+        $remedies = Remedies::with('herbs')->where('posted_by',$user->user_id)->get();
 
-        $herbs=Herbs::where('posted_by',$user->id)->get();
-        $articles=Articles::where('author_id',$user->id)->get();
+        $herbs=Herbs::where('posted_by',$user->user_id)->get();
+        $articles=Articles::where('author_id',$user->user_id)->get();
 
         return view('profile.practitioner',['user'=>$user,'remedies'=>$remedies,'herbs'=>$herbs,'articles'=>$articles]);
 
@@ -83,11 +83,7 @@ class ProfileController extends Controller
             $image = $request->file('Pic');
             $fileName = uniqid() . '.' . $image->getClientOriginalExtension(); // Generate a unique file name
             $image->move($Path, $fileName); // Move the file to the directory
-            dump($fileName);
-            dump($Path);
-            dump($image);
-            dump($validated);
-            sleep(30);
+       
 
             $validated['profile_picture'] = 'images/Profile/' . $fileName;
         }

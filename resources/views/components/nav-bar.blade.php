@@ -72,12 +72,12 @@
     </style>
 
     <header class="header">
-        <a href="{{route('Home')}}"><div class="logo">Sheger Medica</div></a>
+        <a href="{{route('Home')}}" style="text-decoration: none; color:blue" ><div class="logo">Sheger Medica</div></a>
         <nav class="nav">
             <ul class="nav-links">
                 @auth<li><a href="{{route('herbs.all')}}">Herbs</a></li>
                 <li><a href="{{route('remedies.all')}}">Remedy</a></li>
-                <li><a href="#">Practitioners</a></li>
+                <li><a href="{{route('practitioners')}}">Practitioners</a></li>
 
                     <li><a href="{{route('profile.edit')}}">Profile</a></li>
                     @if(Auth::user()->hasRole('admin'))

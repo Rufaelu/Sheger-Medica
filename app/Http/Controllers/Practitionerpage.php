@@ -7,7 +7,7 @@ use App\Models\Herbs;
 use App\Models\Remedies;
 use App\Models\Articles;
 
-class Pratitionerpage extends Controller
+class Practitionerpage extends Controller
 {
     public function profile($id)
     {
@@ -17,11 +17,10 @@ class Pratitionerpage extends Controller
         $articles = Articles::where('user_id', $id)->get();
         return view('Profile', ['practitioner' => $practitioner, 'herbs' => $herbs, 'remedies' => $remedies, 'articles' => $articles]);
     }
-        
+
     public function index()
     {
-        $practitioners = User::all();
-        return view('Practitioner', ['practitioners' => $practitioners]);
+        return view('Practitioner', ['practitioners' => $this->home()]);
     }
     public static function home()
     {

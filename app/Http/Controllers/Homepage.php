@@ -12,11 +12,11 @@ class Homepage extends Controller
     {
         $herbs = Herbs::all();
         $articles = Articles::all();
-        $users = Pratitionerpage::home();
+        $users = Practitionerpage::home();
 
         $remedies = Remedies::with('herbs')->get();
 
-       
+
 
         return view('Home', ['herbs' => $herbs, 'remedies' => $remedies, 'articles' => $articles, 'practitioners' => $users]);
     }

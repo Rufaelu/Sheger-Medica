@@ -19,16 +19,19 @@ class ArticlesController extends Controller
     // Store a newly created article
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+                'content' => 'required|string',
             'author_id' => 'required|exists:users,user_id',
-            'status' => 'required|boolean',
+
         ]);
+        $validated['status'] = 'published';
 
-        Articles::create($validated);
+        $article = Articles::create($validated);
 
-        return response()->json(['message' => 'Article created successfully!'], 201);
+        
+        return redirect()->back()->with('success', 'Article created successfully!');
     }
 
     // Display a specific article

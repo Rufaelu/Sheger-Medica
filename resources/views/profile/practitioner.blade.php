@@ -179,7 +179,7 @@
                 <form action="{{ route('profile.destroy') }}" method="POST">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $user->user_id }}">
-                    <button type="submit">Delete Account</button>
+                    <x-secondary-button style="width: 13vw;" type="submit">Delete Account</x-secondary-button>
                 </form>
                  </div>
             @endif
@@ -191,6 +191,7 @@
                 <div class="grid">
                     <div class="card">
                         <div class="grid grid-cols-1">
+                            @if(Auth::user()->hasRole('practitioner'))
                             <div class="card">
                                 <label for="Pic" class="label">Picture</label>
                                 <img src="{{ asset('storage/'.$user->profile_picture)?? asset('images/Profile/Profile.jpg') }}" alt="Profile Picture" class="">
@@ -198,6 +199,7 @@
                                 <input type="file" name="Pic" id="Pic" autocomplete="given-name"  value="{{ asset('storage/'.$user->profile_picture)}}" >
                                 @endif
                             </div>
+                            @endif
                             <div class="card">
                                 <label for="first_name" class="label">First name</label>
                                 @if(Auth::user()->user_id == $user->user_id )
@@ -224,7 +226,7 @@
                                 <input type="text" name="email" id="email" autocomplete="email" value="{{ $user->email }}" disabled>
                                 @endif
                             </div>
-
+                            @if(Auth::user()->hasRole('practitioner'))
                             <div class="card">
                                 <label for="specialties" class="label">Specialties</label>
                                 @if(Auth::user()->user_id == $user->user_id )
@@ -233,7 +235,7 @@
                                 <input type="text" name="specialties" id="specialties" value="{{ $user->specialties }}" disabled>
                                 @endif
                             </div>
-
+                            @endif
                             <div class="card">
                                 <label for="bio" class="label">Bio</label>
                                 @if(Auth::user()->user_id == $user->user_id )
@@ -259,6 +261,7 @@
 
         <div class="divider"></div>
 
+        @if(Auth::user()->hasRole('practitioner'))
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="md:col-span-1">
                 <div class="card">
@@ -334,7 +337,7 @@
                                 <div class="card">
                                     <h4>{{ $article->title }}</h4>
                                     <textarea disabled>
-                                        {{ Str::limit($article->content, 100) }}
+                                        {{ $article->content }}
                                     </textarea>
 
                                 </div>
@@ -346,5 +349,6 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
